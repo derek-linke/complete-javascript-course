@@ -28,7 +28,14 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guessVal === secretNumber) {
     document.querySelector('.message').textContent =
       'You have guessed the secret numnber!';
-    document.querySelector('.highscore').textContent = String(highScore);
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
+    document.querySelector('.number').textContent = guessVal;
+
+    if (score > highScore) {
+      highScore = score;
+      document.querySelector('.highscore').textContent = String(highScore);
+    }
   } else if (guessVal < secretNumber) {
     if (score > 1) {
       score--;
@@ -43,7 +50,6 @@ document.querySelector('.check').addEventListener('click', function () {
     if (score > 1) {
       score--;
       document.querySelector('.score').textContent = score;
-      highScore = score;
       document.querySelector('.message').textContent =
         'Guess number is too high!';
     } else {
@@ -56,5 +62,9 @@ document.querySelector('.again').addEventListener('click', function () {
   score = 20;
   document.querySelector('.score').textContent = score;
   secretNumber = ranNumber();
+  document.querySelector('.number').textContent = ' Start the game again!';
+  document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
 });
